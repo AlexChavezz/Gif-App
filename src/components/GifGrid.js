@@ -1,13 +1,13 @@
 import React from 'react';
 import { useFetchGifs } from '../hooks/useFetchGifs';
-import {GifGridItem} from './GifGridItem';
+import { GifGridItem } from './GifGridItem';
 
 
 const GifGrid = ({ category }) => {
 
 
-    const { data:images, loading } = useFetchGifs( category );
-    
+    const { data: images, loading } = useFetchGifs(category);
+
     /*const [images, setImages] = useState([]);
     
     
@@ -15,17 +15,20 @@ const GifGrid = ({ category }) => {
 */
 
     return (
-        <>
-            <h3> {category} </h3>
-            {loading && <p className = "animate__animated  animate__shakeX">Cargando...</p>}
-             <div className = "container">
+        <section>
+            <article className="gif-title">
+                <h3> {category} </h3>
+            </article>
+            <article className="gif-card-container">
                 {
                     images.map(img => (
-                        <GifGridItem {...img} key = { img.id } />
+                        <GifGridItem  key={img.id} {...img} isFavorite={false}/>
                     ))
                 }
-            </div>
-        </>
+            </article>
+            {/* Looading animation */}
+            {/* {loading && <p className = "animate__animated  animate__shakeX">Cargando...</p>} */}
+        </section>
     );
 
 }

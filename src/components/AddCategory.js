@@ -18,7 +18,7 @@ const AddCategory = ({ setCategories }) => {
         e.preventDefault();
     }
     return (
-        <>
+        <section className="search-gif">
             <form onSubmit={ handleSubmit }>
                 <label>Search</label>
                 <input
@@ -28,7 +28,7 @@ const AddCategory = ({ setCategories }) => {
                     placeholder="New Category" />
                 <input type="submit" value="Add" />
             </form>
-        </>
+        </section>
     );
 
 }
