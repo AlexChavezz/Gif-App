@@ -7,7 +7,7 @@ import search from '../../pictures/search_black_24dp.svg';
 export const Header = () => {
 
 
-    const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
+    const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
 
     const handleLogin = () => {
         loginWithRedirect();

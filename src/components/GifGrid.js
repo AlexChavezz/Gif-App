@@ -6,13 +6,7 @@ import { GifGridItem } from './GifGridItem';
 const GifGrid = ({ category }) => {
 
 
-    const { data: images, loading } = useFetchGifs(category);
-
-    /*const [images, setImages] = useState([]);
-    
-    
-  
-*/
+    const { data: images } = useFetchGifs(category);
 
     return (
         <section>
@@ -22,7 +16,7 @@ const GifGrid = ({ category }) => {
             <article className="gif-card-container">
                 {
                     images.map(img => (
-                        <GifGridItem  key={img.id} {...img} isFavorite={false}/>
+                        <GifGridItem key={img.id} {...img} isFavorite={false} />
                     ))
                 }
             </article>

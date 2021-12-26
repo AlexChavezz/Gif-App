@@ -1,32 +1,40 @@
 import React, { useContext } from 'react';
 import star from '../pictures/star_black_24dp.svg';
-import { ItemsContext } from './Context/ItemsContext';
+import { ItemsContext } from '../Context/ItemsContext';
+import { addDoc, collection, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../firebase/firebase.config';
+import { useAuth0 } from '@auth0/auth0-react';
+import { addToFavorite } from '../helpers/loadGifsFromFirebase';
 
 export const GifGridItem = ({ title, id, url, isFavorite }) => {
 
     const { items, setItems } = useContext(ItemsContext);
+    const { user } = useAuth0();
 
-    const handleAddFavorite = () => {
-        if (items.length > 0) {
-            setItems([...items, {
-                title,
-                url,
-                id,
-                isFavorite: true,
-            }])
-        } else {
-            setItems([{
-                title,
-                url,
-                id,
-                isFavorite: true
-            }])
+    const handleAddFavorite = async () => {
+
+        const newGif = {
+            title,
+            url,
+            id,
+            isFavorite: true
         }
+        addToFavorite(items, setItems, newGif, user);
+    }
+    const handleRemoveFromFavorites = () => {
+        setItems(items.filter(item => item.id !== id));
+        items.forEach(item => {
+            if (item.id === id) {
+                deleteDoc(doc(db, `${user.sub}/${id}`))
+                    .then(() => {
+                        console.log('doc eliminado')
+                    })
+                    .catch((error) => console.log(error))
+            }
+        });
+
     }
 
-    const handleRemoveFromFavorites = () => {
-        setItems( items.filter(item => item.id !== id) )
-    }
 
     return (
         <div className='card' >
@@ -50,16 +58,16 @@ export const GifGridItem = ({ title, id, url, isFavorite }) => {
                     </button>
                     :
                     <button
-                    onClick={ handleRemoveFromFavorites }
-                >
-                    <img
-                        src={star}
-                        alt="star-img"
-                        id="star-img"
-                    />
-                    REMOVE FROM FAVORITES
-                </button>
-                }
+                        onClick={handleRemoveFromFavorites}
+                    >
+                        <img
+                            src={star}
+                            alt="star-img"
+                            id="star-img"
+                        />
+                        REMOVE FROM FAVORITES
+                    </button>
+            }
         </div>
     );
 }
