@@ -16,12 +16,14 @@ export const RoutesComponent = () => {
             const items = await loadGifsFromFirebase(user.sub);
             setItems(items);
         }
-        if( user ){
+        if (user) {
             getData();
         }
     }, [user, setItems])
 
-    
+    // // -> alert logic
+    // const alertRef = useRef(null);
+    // const [alertState, setAlertState] = useState(false);
 
     return (
         <div className="container">
@@ -31,6 +33,16 @@ export const RoutesComponent = () => {
                 <Route path="/favorites" element={<FavoriteScreen />} />
                 {/* <Route path="*" element={<h4>not found</h4>} /> */}
             </Routes>
+            {/* {
+                    alertState &&
+
+                    <section
+                        className="alert"
+                        ref={alertRef}
+                    >
+
+                    </section>
+                } */}
         </div>
     )
 }

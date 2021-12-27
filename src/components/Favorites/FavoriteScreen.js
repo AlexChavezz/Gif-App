@@ -15,7 +15,10 @@ export const FavoriteScreen = () => {
                 isAuthenticated ?
                     <article className="gif-card-container favorites">
                         {
+                            items.length > 0?
                             items.map(item => <GifGridItem {...item} key={item.id} />)
+                            :
+                            <>YOU HAVE NOT GIFS SAVED</>
                         }
                     </article>
                     :

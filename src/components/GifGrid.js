@@ -3,7 +3,7 @@ import { useFetchGifs } from '../hooks/useFetchGifs';
 import { GifGridItem } from './GifGridItem';
 
 
-const GifGrid = ({ category }) => {
+const GifGrid = ({ category, setAlertLogin }) => {
 
 
     const { data: images } = useFetchGifs(category);
@@ -16,7 +16,7 @@ const GifGrid = ({ category }) => {
             <article className="gif-card-container">
                 {
                     images.map(img => (
-                        <GifGridItem key={img.id} {...img} isFavorite={false} />
+                        <GifGridItem key={img.id} {...img} isFavorite={false} setAlertLogin={setAlertLogin}/>
                     ))
                 }
             </article>

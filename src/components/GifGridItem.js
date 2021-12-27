@@ -1,25 +1,33 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import star from '../pictures/star_black_24dp.svg';
 import { ItemsContext } from '../Context/ItemsContext';
-import { addDoc, collection, deleteDoc, doc } from 'firebase/firestore';
+import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase/firebase.config';
 import { useAuth0 } from '@auth0/auth0-react';
 import { addToFavorite } from '../helpers/loadGifsFromFirebase';
 
-export const GifGridItem = ({ title, id, url, isFavorite }) => {
+export const GifGridItem = ({ title, id, url, isFavorite, setAlertLogin }) => {
 
     const { items, setItems } = useContext(ItemsContext);
-    const { user } = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
+
+    const refButton = useRef(null);
 
     const handleAddFavorite = async () => {
-
-        const newGif = {
-            title,
-            url,
-            id,
-            isFavorite: true
+        if( isAuthenticated ) {
+            const newGif = {
+                title,
+                url,
+                id,
+                isFavorite: true
+            }
+            addToFavorite(items, setItems, newGif, user);
+            refButton.current.style.backgroundColor = '#22B244';
+            refButton.current.style.color = '#fff';
+        }else{
+            setAlertLogin(true);
         }
-        addToFavorite(items, setItems, newGif, user);
+
     }
     const handleRemoveFromFavorites = () => {
         setItems(items.filter(item => item.id !== id));
@@ -27,7 +35,7 @@ export const GifGridItem = ({ title, id, url, isFavorite }) => {
             if (item.id === id) {
                 deleteDoc(doc(db, `${user.sub}/${id}`))
                     .then(() => {
-                        console.log('doc eliminado')
+                        
                     })
                     .catch((error) => console.log(error))
             }
@@ -48,6 +56,7 @@ export const GifGridItem = ({ title, id, url, isFavorite }) => {
                 !isFavorite ?
                     <button
                         onClick={handleAddFavorite}
+                        ref={refButton}
                     >
                         <img
                             src={star}
@@ -59,6 +68,7 @@ export const GifGridItem = ({ title, id, url, isFavorite }) => {
                     :
                     <button
                         onClick={handleRemoveFromFavorites}
+                        ref={refButton}
                     >
                         <img
                             src={star}
