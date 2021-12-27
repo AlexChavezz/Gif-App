@@ -1,8 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react'
 import { Link } from 'react-router-dom';
-import star from '../../pictures/star_black_24dp.svg';
-import search from '../../pictures/search_black_24dp.svg';
 
 export const Header = () => {
 
@@ -21,13 +19,13 @@ export const Header = () => {
             <nav>
                 <ul>
                     <li>
-                        <img src={search} alt="search-img" />
+                        <img src='./pictures/search_black_24dp.svg' alt="search-img" />
                         <Link to="/" >
                             Home
                         </Link>
                     </li>
                     <li>
-                        <img src={star} alt="star-img" />
+                        <img src='./pictures/star_black_24dp.svg' alt="star-img" />
                         <Link to="/favorites" >
                             Favorites
                         </Link>

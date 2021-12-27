@@ -1,5 +1,4 @@
 import React, { useContext, useRef } from 'react';
-import star from '../pictures/star_black_24dp.svg';
 import { ItemsContext } from '../Context/ItemsContext';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase/firebase.config';
@@ -59,7 +58,7 @@ export const GifGridItem = ({ title, id, url, isFavorite, setAlertLogin }) => {
                         ref={refButton}
                     >
                         <img
-                            src={star}
+                            src='./pictures/star_black_24dp.svg'
                             alt="star-img"
                             id="star-img"
                         />
@@ -71,7 +70,7 @@ export const GifGridItem = ({ title, id, url, isFavorite, setAlertLogin }) => {
                         ref={refButton}
                     >
                         <img
-                            src={star}
+                            src='./pictures/star_black_24dp.svg'
                             alt="star-img"
                             id="star-img"
                         />
