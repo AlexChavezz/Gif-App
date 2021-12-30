@@ -1,19 +1,15 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react'
 import { Link } from 'react-router-dom';
 
 export const Header = () => {
 
+    // const handleLogin = () => {
+    //     loginWithRedirect();
+    // }
+    // const handleLogOut = () => {
+    //     logout();
+    // }
 
-    const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
-
-    const handleLogin = () => {
-        loginWithRedirect();
-    }
-    const handleLogOut = () => {
-        logout();
-    }
-    
     return (
         <header>
             <nav>
@@ -32,7 +28,15 @@ export const Header = () => {
                     </li>
                 </ul>
                 <ul>
-                    {
+                    <Link to="/auth">
+                        <li
+                            className="auth-buttons"
+                        // onClick={handleLogin}
+                        >
+                            Log In
+                        </li>
+                    </Link>
+                    {/* {
                         isAuthenticated ?
                             (<li
                                 className="auth-buttons"
@@ -47,7 +51,7 @@ export const Header = () => {
                             >
                                 Log In
                             </li>)
-                    }
+                    } */}
                 </ul>
             </nav>
         </header>

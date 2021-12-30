@@ -10,6 +10,7 @@ body {
   font-family: arial, sans-serif;
   text-transform: uppercase;
 }
+
 /*
 *
 *
@@ -23,7 +24,7 @@ body {
 */
 
 .auth-buttons {
-   align-items: center;
+  align-items: center;
   background: transparent;
   border-radius: 3px;
   border: lightblue 1px solid;
@@ -70,34 +71,36 @@ body {
   align-items: center;
   background: hsla(0, 0%, 9%, 0.184);
   position: fixed;
-  top:0px;
-  left:0px;
+  top: 0px;
+  left: 0px;
   display: flex;
   justify-content: center;
   height: 100vh;
   width: 100vw;
   z-index: 1;
 }
+
 .alert-login-container .modal {
   animation: animation-in 200ms linear;
   background-color: #fff;
-  border-radius:5px;
+  border-radius: 5px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   height: 20vh;
-  width:20vw;
+  width: 20vw;
   text-align: center;
-  padding: 20px;  
-  font-size:35px;
+  padding: 20px;
+  font-size: 35px;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
+
 .alert-login-container img {
   position: absolute;
   right: 10px;
-  top:10px;
+  top: 10px;
   cursor: pointer;
 }
 
@@ -105,7 +108,9 @@ body {
   from {
     opacity: 0;
     transform: translateY(-100px);
-  }to{
+  }
+
+  to {
     opacity: 1;
     transform: translateY(0px);
   }
@@ -190,7 +195,7 @@ h3 {
   margin-left: 20px;
 }
 
-input[type="text"] {
+.search-gif input[type="text"] {
   padding: 10px;
   margin: 10px;
   border: 1px solid #ccc;
@@ -220,12 +225,6 @@ form {
   justify-content: center;
 }
 
-form label {
-  text-align: center;
-}
-
-
-
 
 .card .gif {
   display: block;
@@ -252,9 +251,11 @@ form label {
   justify-content: center;
   font-size: 20px;
 }
+
 .container section .favorites {
-  margin-top:30px;
+  margin-top: 30px;
 }
+
 .container section .gif-card-container {
   display: flex;
   flex-wrap: wrap;
@@ -281,12 +282,15 @@ form label {
   width: 100%;
   cursor: pointer;
 }
+
 .container section .gif-card-container .card button #star-img {
-  margin-right:20px;
+  margin-right: 20px;
 }
+
 .container section .gif-card-container .card button:hover {
   background-color: #ccc;
 }
+
 .container section .gif-card-container .card p {
   position: absolute;
   right: 0;
@@ -311,23 +315,168 @@ form label {
 */
 
 .search-gif {
-  margin:30px 0px;
+  margin: 30px 0px;
 }
-.search-gif form > label {
+
+.search-gif form>label {
   font-size: 17px;
 }
+
 .search-gif form input[type="submit"] {
   background-color: #fff;
-  border-radius:2px;
-  border:1px solid #ccc;
+  border-radius: 2px;
+  border: 1px solid #ccc;
   cursor: pointer;
   padding: 10px;
 }
+
 .search-gif form input[type="submit"]:hover {
   background-color: lightblue;
-  border:none;
-  color:#fff;
+  border: none;
+  color: #fff;
 }
+
+/*
+*
+*
+*
+*
+  LOGIN AND REGISTER SCREEN STYLES
+*
+*
+*
+*
+*/
+main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.login_and_register {
+  width: 40%;
+  background-color: #6C63FF;
+  height: 100vh;
+  display: flex;
+}
+
+.forms {
+  background-image: url("https://media0.giphy.com/media/14gxbEtCfIqdnG/giphy.gif?cid=792e69a2qy1rghd3a5p2n3f3i0obfgs21m6vpqk0pqnzzxex&amp;rid=giphy.gif&amp;ct=g"); 
+  /* background-image: url("https://media2.giphy.com/media/3gJRDvjz1vc666fxPl/giphy-downsized-medium.gif?cid=792e69a23h8o2322xz8vnkaxbzrydhycdq3nog0bvr73brur&rid=giphy-downsized-medium.gif&ct=g"); */
+  background-repeat:round;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+  Forms Secction
+*/
+.forms form {
+  /* background-color: #fff; */
+  background-color:#FCB1AA ;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 15px;
+  display: flex;
+  min-height: 300px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px;
+  height: 50vh;
+  width: 500px;
+}
+.forms form h3 {
+  font-size:30px; 
+  color: #6C63FF;
+  margin:0px;
+}
+.forms form span {
+  color:#6C63FF;
+  font-size:15px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  transition: all 200ms easy;
+}
+.forms form span:hover {
+  box-shadow: 1px 2px 1px #ccc;
+}
+
+.forms .form-group {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+}
+
+.forms .form-group label {
+  width: 15%;
+  padding: 8px;
+}
+
+.forms .form-group input[type="password"],  input[type="email"], input[type="text"] {
+  border-radius:5px;
+  width: 85%;
+  padding: 0px 5px;
+  border: .5px solid #ccc;
+}
+.forms form input:focus {
+  background-color: #fff;
+  outline: none;
+  border: 2px solid #6C63FF;
+}
+.forms .form-group input[type="password"]:focus{
+  outline: none;
+  border: 2px solid #6C63FF;
+}
+.forms form input[type="submit"] { 
+  border-radius:5px;
+  background-color:#6C63FF;
+  color:#fff;
+  cursor: pointer;
+  padding:10px 20px;
+  border:1px solid #6C63FF;
+  transition: all 300ms ease  ;
+}
+.forms form input[type="submit"]:active {
+  transform: scale(0.7);
+} 
+
+/*
+  Welcome Secction
+*/
+.login_and_register .login_and_register_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.login_and_register .login_and_register_container .login_and_register_img_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login_and_register .login_and_register_container .login_and_register_img_container img {
+  width: 80%;
+}
+
+.login_and_register .login_and_register_container .login_and_register_text_container {
+  color: #fff;
+  font-family: monospace;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
 
 
 /* @media (max-width: 1335px) {
