@@ -368,6 +368,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
 }
 
 /*
@@ -399,9 +400,8 @@ main {
   padding: 10px;
   transition: all 200ms easy;
 }
-.forms form span:hover {
-  box-shadow: 1px 2px 1px #ccc;
-}
+/* .forms form span:hover {
+} */
 
 .forms .form-group {
   padding: 10px;
@@ -454,9 +454,10 @@ main {
 }
 
 .login_and_register .login_and_register_container .login_and_register_img_container {
-  width: 100%;
-  display: flex;
   justify-content: center;
+  user-select: none;
+  display: flex;
+  width: 100%;
 }
 
 .login_and_register .login_and_register_container .login_and_register_img_container img {
