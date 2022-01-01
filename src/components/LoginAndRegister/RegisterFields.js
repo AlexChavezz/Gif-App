@@ -1,6 +1,7 @@
 import React from 'react';
 
-export const RegisterFields = () => {
+export const RegisterFields = ({values, handleInputChange}) => {
+    const { name, email, password, confirmPassowrd } = values;
     return (
         <>
         <div className="form-group">
@@ -8,6 +9,9 @@ export const RegisterFields = () => {
             <input
                 type="text"
                 autoComplete="off"
+                name="name"
+                value={name}
+                onChange={handleInputChange}
             />
         </div>
         <div className="form-group">
@@ -15,6 +19,9 @@ export const RegisterFields = () => {
             <input
                 type="email"
                 autoComplete="off"
+                name="email"
+                value={email}
+                onChange={handleInputChange}
             />
         </div>
         <div className="form-group">
@@ -22,6 +29,9 @@ export const RegisterFields = () => {
             <input
                 type="password"
                 autoComplete="off"
+                name="password"
+                value={password}
+                onChange={handleInputChange}
             />
         </div>
         <div className="form-group">
@@ -29,9 +39,10 @@ export const RegisterFields = () => {
             <input
                 type="password"
                 autoComplete="off"
+                name="confirmPassowrd"
+                value={confirmPassowrd}
+                onChange={handleInputChange}
             />
-
-            {/* <p> You have a account ?</p> <span>Login</span> */}
         </div>
     </>
     );

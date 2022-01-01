@@ -2,7 +2,6 @@ import React from 'react';
 import welcome from '../../pictures/undraw_welcome_cats_thqn.svg';
 import { Form } from './Form';
 export const LoginAndRegisterScreen = () => {
-    
 
     return (
         <main>

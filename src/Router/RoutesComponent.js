@@ -7,17 +7,7 @@ import { ItemsContext } from '../Context/ItemsContext';
 import { loadGifsFromFirebase } from '../helpers/loadGifsFromFirebase';
 
 export const RoutesComponent = () => {
-    const { setItems } = useContext(ItemsContext);
-
-    // useEffect(() => {
-    //     async function getData() {
-    //         const items = await loadGifsFromFirebase(user.sub);
-    //         setItems(items);
-    //     }
-    //     if (user) {
-    //         getData();
-    //     }
-    // }, [user, setItems])
+    // const { setItems } = useContext(ItemsContext);
 
     return (
         <div className="container">

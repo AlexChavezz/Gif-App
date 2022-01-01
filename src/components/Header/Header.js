@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthContext';
 
 export const Header = () => {
 
     // const handleLogin = () => {
     //     loginWithRedirect();
     // }
-    // const handleLogOut = () => {
-    //     logout();
-    // }
+    
+    const { setAuth, setIsLoggedIn } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        localStorage.removeItem('token');
+        setAuth({});
+        setIsLoggedIn(false);
+    }
 
     return (
         <header>
@@ -36,22 +42,19 @@ export const Header = () => {
                             Log In
                         </li>
                     </Link>
-                    {/* {
-                        isAuthenticated ?
-                            (<li
-                                className="auth-buttons"
-                                onClick={handleLogOut}
-                            >
-                                Log Out
-                            </li>)
-                            :
-                            (<li
-                                className="auth-buttons"
-                                onClick={handleLogin}
-                            >
-                                Log In
-                            </li>)
-                    } */}
+                    (<li
+                        className="auth-buttons"
+                        onClick={handleLogOut}
+                    >
+                        Log Out
+                    </li>)
+                    :
+                    {/* (<li
+                        className="auth-buttons"
+                        // onClick={handleLogin}
+                    >
+                        Log In
+                    </li>) */}
                 </ul>
             </nav>
         </header>
