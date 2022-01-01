@@ -1,8 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ButtonLogin } from '../../Button/ButtonLogin';
 export const Alert = ({setAlertLogin}) => {
-
-    // const { loginWithRedirect } = useAuth0();
 
     return (
         <section 
@@ -11,7 +10,9 @@ export const Alert = ({setAlertLogin}) => {
         >
            <article className="modal">
                 LOGIN
-               {/* <ButtonLogin text="LOG IN" onClick={loginWithRedirect}/> */}
+            <Link to="/auth">
+               <ButtonLogin text="LOG IN"/>
+            </Link>
                 <img src='./pictures/close_black_24dp.svg' alt="close-button" />
            </article>
         </section>

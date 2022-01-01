@@ -1,47 +1,58 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RoutesComponent } from './RoutesComponent';
 import { LoginAndRegisterScreen } from '../components/LoginAndRegister/LoginAndRegisterScreen';
 import { AuthContext } from '../Context/AuthContext';
 import { LoggedRender } from './LoggedRender';
+import { loadGifsFromFirebase } from '../helpers/loadGifsFromFirebase';
+import { ItemsContext } from '../Context/ItemsContext';
 
 export const AppRouter = () => {
-
-    const [auth, setAuth] = useState({});
-    const [isLoggedIn, setIsLoggedIn] = useState(null);
+    const [auth, setAuth] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const { setItems } = useContext(ItemsContext);
 
     useEffect(() => {
-
-        async function getToken() {
-            const token = JSON.parse(localStorage.getItem('token'));
-            console.log(token)
-            if (token) {
-                const body = await fetch('http://localhost:8080/api/auth/validate', {
-                    method: "GET",
-                    headers: {
-                        'x-token': token,
-                    }
+        const token = JSON.parse(localStorage.getItem('token'));
+        if (token) {
+            fetch('http://localhost:8080/api/auth/validate', {
+                headers: {
+                    'x-token': token,
+                }
+            })
+                .then(response => response.json())
+                .then(res => {
+                    setAuth(res);
+                    setIsLoggedIn(true);
+                    loadGifsFromFirebase(res.uid).then( res => {
+                        setIsLoading(false);
+                        setItems(res)
+                    })
                 })
-                const res = await body.json();
-                setAuth({ ...res, isAuthenticated: true });
-                setIsLoggedIn(true);
-            }
+        } else {
+            setIsLoading(false);
         }
-        getToken();
+    }, [setItems])
 
-    }, [])
-
+    if (isLoading) {
+        return (
+            <>Loadding...</>
+        )
+    }
 
     return (
         <AuthContext.Provider value={{
             auth,
-            setAuth, 
+            setAuth,
             isLoggedIn,
             setIsLoggedIn
         }}>
             <BrowserRouter>
                 <Routes>
-                    <Route exact path="/*" element={<RoutesComponent />} />
+                    <Route exact path="/*" element={
+                        <RoutesComponent />
+                    } />
 
 
                     <Route path="/auth" element={

@@ -1,18 +1,16 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthContext';
+import { ItemsContext } from '../../Context/ItemsContext';
 
 export const Header = () => {
 
-    // const handleLogin = () => {
-    //     loginWithRedirect();
-    // }
-    
-    const { setAuth, setIsLoggedIn } = useContext(AuthContext);
-
+    const { setAuth, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
+    const { setItems } = useContext(ItemsContext);
     const handleLogOut = () => {
         localStorage.removeItem('token');
         setAuth({});
+        setItems([]);
         setIsLoggedIn(false);
     }
 
@@ -34,27 +32,27 @@ export const Header = () => {
                     </li>
                 </ul>
                 <ul>
-                    <Link to="/auth">
-                        <li
-                            className="auth-buttons"
-                        // onClick={handleLogin}
-                        >
-                            Log In
-                        </li>
-                    </Link>
-                    (<li
-                        className="auth-buttons"
-                        onClick={handleLogOut}
-                    >
-                        Log Out
-                    </li>)
-                    :
-                    {/* (<li
-                        className="auth-buttons"
-                        // onClick={handleLogin}
-                    >
-                        Log In
-                    </li>) */}
+                    {
+                        isLoggedIn ?
+                        (
+                            (<li
+                                className="auth-buttons"
+                                onClick={handleLogOut}
+                            >
+                                Log out
+                            </li>)
+                        ):(
+                            <Link to="/auth">
+                            <li
+                                className="auth-buttons"
+                            // onClick={handleLogin}
+                            >
+                                Log In
+                            </li>
+                        </Link>
+                        )
+                    }
+                   
                 </ul>
             </nav>
         </header>

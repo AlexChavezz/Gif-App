@@ -9,8 +9,9 @@ export const userFetch = async (type, body) => {
         body: JSON.stringify(body)
     })
     const res = await bodyRes.json();
+    console.log(res)
     if( res.jwt ){
         localStorage.setItem('token', JSON.stringify(res.jwt));
     }
-    console.log(res)
+    return res.user.uid;
 }

@@ -5,14 +5,12 @@ import { AuthContext } from '../../Context/AuthContext';
 
 export const FavoriteScreen = () => {
 
-    // const { isAuthenticated } = useAuth0();
     const { items } = useContext(ItemsContext);
-    const { auth } = useContext(AuthContext);
-    console.log(auth);
+    const { isLoggedIn } = useContext(AuthContext);
     return (
         <section>
-            {/* {
-                isAuthenticated ?
+            {
+                isLoggedIn ?
                     <article className="gif-card-container favorites">
                         {
                             items.length > 0?
@@ -25,7 +23,7 @@ export const FavoriteScreen = () => {
                     <article className="favorite-screen-denied">
                         LOG IN TO SAVE YOUR FAVORITES GIFS
                     </article>
-            } */}
+            }
         </section>
     )
 }

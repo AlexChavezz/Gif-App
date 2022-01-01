@@ -10,9 +10,9 @@ export const loadGifsFromFirebase = async (uid) => {
     return gifs;
 }
 
-export const addToFavorite = async (items, setItems, newGif, user) => {
+export const addToFavorite = async (items, setItems, newGif, uid) => {
     try {
-        const docRef = await addDoc(collection(db, `${user.sub}`), newGif);
+        const docRef = await addDoc(collection(db, `${uid}`), newGif);
 
         if (items.length > 0) {
             setItems([...items, { ...newGif, id: docRef.id }]);

@@ -1,13 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { FavoriteScreen } from '../components/Favorites/FavoriteScreen';
 import GifExpertApp from '../components/GifExpertApp';
 import { Header } from '../components/Header/Header';
-import { ItemsContext } from '../Context/ItemsContext';
-import { loadGifsFromFirebase } from '../helpers/loadGifsFromFirebase';
 
 export const RoutesComponent = () => {
     // const { setItems } = useContext(ItemsContext);
+    // const { auth } = useContext(AuthContext);
 
     return (
         <div className="container">
@@ -17,16 +16,6 @@ export const RoutesComponent = () => {
                 <Route path="/favorites" element={<FavoriteScreen />} />
                 <Route path="*" element={<h4>not found</h4>} />
             </Routes>
-            {/* {
-                    alertState &&
-
-                    <section
-                        className="alert"
-                        ref={alertRef}
-                    >
-
-                    </section>
-                } */}
         </div>
     )
 }

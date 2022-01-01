@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const ButtonLogin = ({ text, onClick }) => {
+export const ButtonLogin = ({ text }) => {
 
     return (
         <button
         className="auth-buttons"
-        onClick={ onClick }
+        // onClick={ onClick }
         >
            { text }
         </button>
