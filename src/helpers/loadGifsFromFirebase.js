@@ -3,24 +3,17 @@ import { db } from "../firebase/firebase.config"
 
 export const loadGifsFromFirebase = async (uid) => {
     let gifs = [];
-    const query = await getDocs(collection(db, `${uid}/`));
+    const query = await getDocs(collection(db, `${uid}`));
     query.forEach(doc => {
         gifs = [...gifs, { ...doc.data(), id: doc.id }]
     });
     return gifs;
 }
 
-export const addToFavorite = async (items, setItems, newGif, uid) => {
+export const addToFavorite = async (newGif, uid) => {
     try {
-        const docRef = await addDoc(collection(db, `${uid}`), newGif);
-
-        if (items.length > 0) {
-            setItems([...items, { ...newGif, id: docRef.id }]);
-
-        } else {
-            setItems([{ ...newGif, id: docRef.id }]);
-
-        }
+        const {id} = await addDoc(collection(db, `${uid}`), newGif);
+        return id;
     } catch (error) {
         console.log(error)
     }

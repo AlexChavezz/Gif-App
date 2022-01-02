@@ -3,5 +3,9 @@ export const types = {
     logout: '[auth] logout',
 
     openLoading: '[loading] open', 
-    closeLoading: '[loading] close'
+    closeLoading: '[loading] close',
+
+    loadGifs: '[gifs] load gifs',
+    addNewGif: '[gifs] add new',
+    removeGifs: '[gifs] remove gifs', 
 }

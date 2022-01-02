@@ -6,7 +6,6 @@ import { store } from './store/store';
 
 const App = () => {
 
-    const [items, setItems] = useState([]);
     return (
         <Provider store={store}>
             <AppRouter />

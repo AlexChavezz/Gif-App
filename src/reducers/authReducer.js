@@ -4,7 +4,6 @@ const initialState = {
     name: null,
     email: null,
     uid:null,
-    isLoading: true, 
     isLoggedIn: false
 }
 
@@ -14,13 +13,11 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 ...action.payload,
-                isLoading: false,
                 isLoggedIn: true,
             }
         case types.logout:
             return {
                 ...state, 
-                isLoading: false, 
                 isLoggedIn: false,
             }
         default:

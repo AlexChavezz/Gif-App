@@ -17,7 +17,6 @@ export const AppRouter = () => {
     // const { setItems } = useContext(ItemsContext);
 
     const  loading  = useSelector(state => state.loading);
-
     const dispatch = useDispatch();
     useEffect(() => {
         const isToken = JSON.parse(localStorage.getItem('token'));
@@ -29,6 +28,14 @@ export const AppRouter = () => {
         }
 
         // setIsLoading(false);
+    }, [])
+    const {uid} = useSelector(state => state.auth);
+
+    useEffect(() => {
+        if ( loading ){
+            console.log(uid)
+            // loadGifsFromFirebase();
+        }
     }, [])
 
     // const [ authState ] = useAuth();
@@ -58,6 +65,7 @@ export const AppRouter = () => {
     //         setIsLoading(false);
     //     }
     // }, [setItems])
+    
     const { isLoggedIn } = useSelector(state => state.auth);
 
     if (loading) {
