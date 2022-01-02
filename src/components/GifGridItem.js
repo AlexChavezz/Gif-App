@@ -4,47 +4,48 @@ import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase/firebase.config';
 import { addToFavorite } from '../helpers/loadGifsFromFirebase';
 import { AuthContext } from '../Context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 
 export const GifGridItem = ({ title, id, url, isFavorite, setAlertLogin }) => {
 
     const { items, setItems } = useContext(ItemsContext);
-    const { auth, isLoggedIn } = useContext(AuthContext);
+    const { auth } = useContext(AuthContext);
     const refButton = useRef(null);
+
+
+
     console.log(auth)
-    const handleAddFavorite = async () => {
-        if (isLoggedIn) {
-            const newGif = {
-                title,
-                url,
-                id,
-                isFavorite: true
-            }
-            addToFavorite(items, setItems, newGif, auth.uid);
-            refButton.current.style.backgroundColor = '#22B244';
-            refButton.current.style.color = '#fff';
-        } else {
-            setAlertLogin(true);
-        }
-    }
-    const handleRemoveFromFavorites = () => {
-        setItems(items.filter(item => item.id !== id));
-        items.forEach(item => {
-            if (item.id === id) {
-                deleteDoc(doc(db, `${auth.uid}/${id}`))
-                    .then(() => {
 
-                    })
-                    .catch((error) => console.log(error))
-            }
-        });
 
-    }
 
-    if( auth.uid ){
-        return (
-            <>loadiing</>
-        )
-    }
+    // const handleAddFavorite = async () => {
+    //     if (isLoggedIn) {
+    //         const newGif = {
+    //             title,
+    //             url,
+    //             id,
+    //             isFavorite: true
+    //         }
+    //         addToFavorite(items, setItems, newGif, uid);
+    //         refButton.current.style.backgroundColor = '#22B244';
+    //         refButton.current.style.color = '#fff';
+    //     } else {
+    //         setAlertLogin(true);
+    //     }
+    // }
+    // const handleRemoveFromFavorites = () => {
+    //     setItems(items.filter(item => item.id !== id));
+    //     items.forEach(item => {
+    //         if (item.id === id) {
+    //             deleteDoc(doc(db, `${auth.uid}/${id}`))
+    //                 .then(() => {
+
+    //                 })
+    //                 .catch((error) => console.log(error))
+    //         }
+    //     });
+
+    // }
 
     return (
         <div className='card' >
@@ -57,7 +58,7 @@ export const GifGridItem = ({ title, id, url, isFavorite, setAlertLogin }) => {
             {
                 !isFavorite ?
                     <button
-                        onClick={handleAddFavorite}
+                        // onClick={handleAddFavorite}
                         ref={refButton}
                     >
                         <img
@@ -69,7 +70,7 @@ export const GifGridItem = ({ title, id, url, isFavorite, setAlertLogin }) => {
                     </button>
                     :
                     <button
-                        onClick={handleRemoveFromFavorites}
+                        // onClick={handleRemoveFromFavorites}
                         ref={refButton}
                     >
                         <img

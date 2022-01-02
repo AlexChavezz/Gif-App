@@ -25,27 +25,27 @@ export const Form = () => {
         reset();
     }
 
-    const { setIsLoggedIn } = useContext(AuthContext)
-    const { setItems } = useContext(ItemsContext);
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const userToLogin = {
-            email: values.email,
-            password: values.password
-        }
-        const userToRegister = values;
-        if (state === "login") {
-            const uid = await userFetch('login', userToLogin);
-            const items = await loadGifsFromFirebase(uid);
-            setItems(items);
-        } else {
-            console.log(userToRegister)
-            const uid = await userFetch('register', userToRegister);
-            const items = await loadGifsFromFirebase(uid);
-            setItems(items);
-        }
-        setIsLoggedIn(true);
-    }
+    // const { setIsLoggedIn } = useContext(AuthContext)
+    // const { setItems } = useContext(ItemsContext);
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const userToLogin = {
+    //         email: values.email,
+    //         password: values.password
+    //     }
+    //     const userToRegister = values;
+    //     if (state === "login") {
+    //         const uid = await userFetch('login', userToLogin);
+    //         const items = await loadGifsFromFirebase(uid);
+    //         setItems(items);
+    //     } else {
+    //         console.log(userToRegister)
+    //         const uid = await userFetch('register', userToRegister);
+    //         const items = await loadGifsFromFirebase(uid);
+    //         setItems(items);
+    //     }
+    //     setIsLoggedIn(true);
+    // }
 
 
 
@@ -60,12 +60,12 @@ export const Form = () => {
             }
             <input
                 type="submit"
-                onClick={handleSubmit}
+                // onClick={handleSubmit}
                 className="submit_button"
             />
 
             <p>{state === "login" ? "I haven't a account" : "I have a account"}</p><span
-                onClick={handleChange}
+                // onClick={handleChange}
             >
                 {state === "login" ? "Register" : "Login"}
             </span>
