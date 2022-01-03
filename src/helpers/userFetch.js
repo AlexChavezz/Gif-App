@@ -1,6 +1,6 @@
 
 export const userFetch = async (type, body) => {
-    const url  = `http://localhost:8080/api/auth/${type}`;
+    const url  = `https://gif-app-back-end.herokuapp.com/api/auth/${type}`;
     const bodyRes = await fetch( url,  {
         method: "POST", 
         headers: {

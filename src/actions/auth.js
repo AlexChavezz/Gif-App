@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 export const loginAction = ( email, password) => {
     return async ( dispatch ) => {
-        const body = await fetch('http://localhost:8080/api/auth/login', {
+        const body = await fetch('https://gif-app-back-end.herokuapp.com/api/auth/login', {
             method:"POST", 
             headers: {
                 'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ export const loginAction = ( email, password) => {
 
 export const registerAction = (name, email, password) => {
     return async ( dispatch ) => {
-        const body = await fetch('http://localhost:8080/api/auth/register', {
+        const body = await fetch('https://gif-app-back-end.herokuapp.com/api/auth/register', {
             method: "POST", 
             headers: {
                 'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ export const registerAction = (name, email, password) => {
 export const validSession = () => {
     return ( displatch ) => {
         const token = JSON.parse(localStorage.getItem('token'));
-        fetch('http://localhost:8080/api/auth/validate', {
+        fetch('https://gif-app-back-end.herokuapp.com/api/auth/validate', {
             headers: {
                 'x-token': token
             }

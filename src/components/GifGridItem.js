@@ -55,7 +55,7 @@ export const GifGridItem = ({ title, id, url, isFavorite, setAlertLogin }) => {
                         ref={refButton}
                     >
                         <img
-                            src='./pictures/star_black_24dp.svg'
+                            src='./star_black_24dp.svg'
                             alt="star-img"
                             id="star-img"
                         />
@@ -67,7 +67,7 @@ export const GifGridItem = ({ title, id, url, isFavorite, setAlertLogin }) => {
                         ref={refButton}
                     >
                         <img
-                            src='./pictures/star_black_24dp.svg'
+                            src='./star_black_24dp.svg'
                             alt="star-img"
                             id="star-img"
                         />

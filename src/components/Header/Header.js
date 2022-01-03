@@ -20,13 +20,13 @@ export const Header = () => {
             <nav>
                 <ul>
                     <li>
-                        <img src='./pictures/search_black_24dp.svg' alt="search-img" />
+                        <img src='./search_black_24dp.svg' alt="search-img" />
                         <Link to="/" >
                             Home
                         </Link>
                     </li>
                     <li>
-                        <img src='./pictures/star_black_24dp.svg' alt="star-img" />
+                        <img src='./star_black_24dp.svg' alt="star-img" />
                         <Link to="/favorites" >
                             Favorites
                         </Link>
