@@ -1,9 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { loginAction, registerAction } from '../../actions/auth';
-import { AuthContext } from '../../Context/AuthContext';
-import { ItemsContext } from '../../Context/ItemsContext';
-import { loadGifsFromFirebase } from '../../helpers/loadGifsFromFirebase';
-import { userFetch } from '../../helpers/userFetch';
 import { useForm } from '../../hooks/useForm';
 import { LoginFields } from './LoginFields';
 import { RegisterFields } from './RegisterFields';
@@ -27,28 +23,6 @@ export const Form = () => {
         }
         reset();
     }
-
-    // const { setIsLoggedIn } = useContext(AuthContext)
-    // const { setItems } = useContext(ItemsContext);
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const userToLogin = {
-    //         email: values.email,
-    //         password: values.password
-    //     }
-    //     const userToRegister = values;
-    //     if (state === "login") {
-    //         const uid = await userFetch('login', userToLogin);
-    //         const items = await loadGifsFromFirebase(uid);
-    //         setItems(items);
-    //     } else {
-    //         console.log(userToRegister)
-    //         const uid = await userFetch('register', userToRegister);
-    //         const items = await loadGifsFromFirebase(uid);
-    //         setItems(items);
-    //     }
-    //     setIsLoggedIn(true);
-    // }
 
     const dispatch = useDispatch();
 

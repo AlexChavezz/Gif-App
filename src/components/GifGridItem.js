@@ -1,24 +1,15 @@
-import React, { useContext, useRef } from 'react';
-import { ItemsContext } from '../Context/ItemsContext';
+import React, { useRef } from 'react';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase/firebase.config';
 import { addToFavorite } from '../helpers/loadGifsFromFirebase';
-import { AuthContext } from '../Context/AuthContext';
-import { useAuth } from '../hooks/useAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { favoriteGifs, removeGifs } from '../actions/favoriteGifs';
 export const GifGridItem = ({ title, id, url, isFavorite, setAlertLogin }) => {
 
-    // const { items, setItems } = useContext(ItemsContext);
-    // const { auth } = useContext(AuthContext);
     const refButton = useRef(null);
-
-console.log(id)
-
-    // console.log(auth)
     const dispatch = useDispatch();
     const { uid, isLoggedIn } = useSelector(state => state.auth);
-    const   items = useSelector(state => state.favorite);
+    const items = useSelector(state => state.favorite);
 
     const handleAddFavorite = async () => {
         if (isLoggedIn) {
@@ -29,7 +20,7 @@ console.log(id)
                 isFavorite: true
             }
             const newId = await addToFavorite(newGif, uid);
-            dispatch(favoriteGifs({...newGif, id: newId}));
+            dispatch(favoriteGifs({ ...newGif, id: newId }));
             refButton.current.style.backgroundColor = '#22B244';
             refButton.current.style.color = '#fff';
         } else {
@@ -37,7 +28,6 @@ console.log(id)
         }
     }
     const handleRemoveFromFavorites = () => {
-        // setItems(items.filter(item => item.id !== id));
         dispatch(removeGifs(id));
         items.forEach(item => {
             if (item.id === id) {
@@ -87,4 +77,3 @@ console.log(id)
         </div>
     );
 }
-    

@@ -1,42 +1,43 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RoutesComponent } from './RoutesComponent';
 import { LoginAndRegisterScreen } from '../components/LoginAndRegister/LoginAndRegisterScreen';
-import { AuthContext } from '../Context/AuthContext';
 import { LoggedRender } from './LoggedRender';
-import { loadGifsFromFirebase } from '../helpers/loadGifsFromFirebase';
-import { ItemsContext } from '../Context/ItemsContext';
-import { useAuth } from '../hooks/useAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { validSession } from '../actions/auth';
 import { closeLoading } from '../actions/loading';
+import { parseJwt } from '../helpers/parseJwt';
 
 export const AppRouter = () => {
     // const [auth, setAuth] = useState(null);
     // const [isLoading, setIsLoading] = useState(true);
     // const { setItems } = useContext(ItemsContext);
 
-    const  loading  = useSelector(state => state.loading);
+    const loading = useSelector(state => state.loading);
     const dispatch = useDispatch();
     useEffect(() => {
-        const isToken = JSON.parse(localStorage.getItem('token'));
+        const token = JSON.parse(localStorage.getItem('token'));
 
-        if (isToken) {
-            dispatch(validSession());
+        if (token) {
+            const { exp } = parseJwt(token);
+            if (Date.now() >= (exp * 1000)) {
+                dispatch(closeLoading());
+                localStorage.removeItem('token');
+            } else {
+                dispatch(validSession());
+            }
         } else {
             dispatch(closeLoading());
         }
-
         // setIsLoading(false);
-    }, [])
-    const {uid} = useSelector(state => state.auth);
+    }, [dispatch])
 
-    useEffect(() => {
-        if ( loading ){
-            console.log(uid)
-            // loadGifsFromFirebase();
-        }
-    }, [])
+    // useEffect(() => {
+    //     if ( loading ){
+    //         console.log(uid)
+    //         // loadGifsFromFirebase();
+    //     }
+    // }, [])
 
     // const [ authState ] = useAuth();
     // const { isLoggedIn } = authState;
@@ -65,7 +66,7 @@ export const AppRouter = () => {
     //         setIsLoading(false);
     //     }
     // }, [setItems])
-    
+
     const { isLoggedIn } = useSelector(state => state.auth);
 
     if (loading) {

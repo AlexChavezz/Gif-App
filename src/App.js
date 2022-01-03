@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { AppRouter } from './Router/AppRouter';
 import { Provider } from "react-redux";
-import { ItemsContext } from './Context/ItemsContext';
 import { store } from './store/store';
 
 const App = () => {

@@ -1,4 +1,12 @@
+import { loadGifsFromFirebase } from "../helpers/loadGifsFromFirebase";
 import { types } from "../types/types";
+
+export const loadFavoriteGifsAsync = (uid) => {
+    return async ( dispatch ) => {
+        const favoritesItems = await loadGifsFromFirebase(uid);
+        dispatch(loadFavoriteGifs(favoritesItems));
+    }
+}
 
 export const favoriteGifs = (newGif) => ({
     type: types.addNewGif,
@@ -10,7 +18,7 @@ export const removeGifs = (id) => ({
     payload: id
 })
 
-export const loadFavoriteGifsAction = ( gifs ) => ({
+export const loadFavoriteGifs = ( gifs ) => ({
     type: types.loadGifs,
     payload: gifs
 })

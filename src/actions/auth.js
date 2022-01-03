@@ -11,6 +11,7 @@ export const loginAction = ( email, password) => {
             body: JSON.stringify({email, password})
         })
         const {jwt:token, user} = await body.json();
+
         localStorage.setItem('token', JSON.stringify(token));
         dispatch(login(user));
         dispatch(closeLoading());
