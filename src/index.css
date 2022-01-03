@@ -398,10 +398,12 @@ main {
   font-weight: bold;
   cursor: pointer;
   padding: 10px;
-  transition: all 200ms easy;
+  transition: all 200ms ease-in;
 }
-/* .forms form span:hover {
-} */
+.forms form span:hover {
+  background-color: #6C63FF;
+  color:#fff;
+}
 
 .forms .form-group {
   padding: 10px;

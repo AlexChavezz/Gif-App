@@ -11,6 +11,8 @@ export const favoriteGifsReducer = ( state =initialState, action) => {
             return [ ...action.payload]
         case types.removeGifs:
             return state.filter(item => item.id !== action.payload)
+        case types.cleanGifs:
+            return state = [];
             default: 
         return state;
     }

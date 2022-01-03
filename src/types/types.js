@@ -8,4 +8,5 @@ export const types = {
     loadGifs: '[gifs] load gifs',
     addNewGif: '[gifs] add new',
     removeGifs: '[gifs] remove gifs', 
+    cleanGifs: '[gifs] clean gifs after to logout'
 }

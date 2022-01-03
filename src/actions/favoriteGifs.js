@@ -18,6 +18,10 @@ export const removeGifs = (id) => ({
     payload: id
 })
 
+export const cleanGifsAfterToLogout = () => ({
+    type: types.cleanGifs,
+})
+
 export const loadFavoriteGifs = ( gifs ) => ({
     type: types.loadGifs,
     payload: gifs

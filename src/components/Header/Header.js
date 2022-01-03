@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../actions/auth';
+import { cleanGifsAfterToLogout } from '../../actions/favoriteGifs';
 
 export const Header = () => {
 
@@ -9,6 +10,7 @@ export const Header = () => {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
+        dispatch(cleanGifsAfterToLogout());
         dispatch(logout());
         localStorage.removeItem('token');
     }

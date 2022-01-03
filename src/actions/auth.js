@@ -1,5 +1,6 @@
 import { types } from "../types/types";
 import { closeLoading } from "./loading";
+import Swal from 'sweetalert2';
 
 export const loginAction = ( email, password) => {
     return async ( dispatch ) => {
@@ -10,7 +11,16 @@ export const loginAction = ( email, password) => {
             },
             body: JSON.stringify({email, password})
         })
-        const {jwt:token, user} = await body.json();
+        const { jwt:token, user, msg }= await body.json();
+        if( msg ){
+            Swal.fire({
+                title: 'Error',
+                icon: 'error',
+                text:msg
+            })
+            dispatch(closeLoading());
+            return;
+        }
 
         localStorage.setItem('token', JSON.stringify(token));
         dispatch(login(user));
@@ -27,7 +37,16 @@ export const registerAction = (name, email, password) => {
             },
             body: JSON.stringify({name, email, password})
         })
-        const {jwt:token, user} = await body.json();
+        const {jwt:token, user, errors} = await body.json();
+        if( errors ){
+            Swal.fire({
+                title:'Error', 
+                icon:'error', 
+                text:errors[0].msg
+            })
+            dispatch(closeLoading());
+            return;
+        }
         localStorage.setItem('token', JSON.stringify(token));
         dispatch(login(user));
         dispatch(closeLoading());
